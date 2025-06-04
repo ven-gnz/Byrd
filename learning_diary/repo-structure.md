@@ -23,9 +23,21 @@ I will be:
     - adding the true source as an include to the project
     - later add a new folder for build targets, when I have more than one component on the engine.
 
-    The including can be done by:
+    Couple notes on including:
         - in visual studio, unloading the project.
             - Then from xml, locate the ItemGroup tag, and add the source folder as include.
-            - for example in math, I did <ClCompile Include="..\..\core\math\**\*.cpp" /> and
-            <ClInclude Include="..\..\core\math\**\*.h" />
-            - This looks good for now.
+            - for example in math, I did
+            <ClCompile Include="..\..\..\core\math\**\*.cpp" /> and
+            <ClInclude Include="..\..\..\core\math\**\*.h" />
+            - This enables the beautiful file explorer plugin to keep up to date.
+            - NOTE : the relative include 'starts' from the .vcxproj. So likely, when creating a new project,
+            the project creation will in fact create one more subfolder so be extra careful here.
+
+
+        - And to include the headers for the compiler I used:
+        <ClCompile> ...
+        <AdditionalIncludeDirectories>$(SolutionDir)..\..\core\math</AdditionalIncludeDirectories>
+         </ClCompile>
+
+         - Note that the solution lives typically '1 up' in the tree than the projects, which create the subfolder
+         upon adding a new project to the solution!
