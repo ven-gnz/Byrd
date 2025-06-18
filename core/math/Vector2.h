@@ -9,7 +9,13 @@ public:
 	Vector2(float x = 0.0f, float y = 0.0f);
 
 	float length() const;
+	Vector2 normalized() const;
 	Vector2 operator+(const Vector2&) const;
+	Vector2 operator-(const Vector2& other) const;
+	Vector2 operator*(const float scalar) const;
+	Vector2 operator*(const Vector2& other) const;
+
+
 };
 
 
