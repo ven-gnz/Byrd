@@ -13,8 +13,9 @@ public:
 	Vector2 operator+(const Vector2&) const;
 	Vector2 operator-(const Vector2& other) const;
 	Vector2 operator*(const float scalar) const;
-	Vector2 operator*(const Vector2& other) const;
-
+	
+	float dot(const Vector2&) const;
+	float angleInRadians(const Vector2&) const;
 
 };
 

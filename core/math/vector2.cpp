@@ -13,12 +13,10 @@ float Vector2::length() const {
 
 Vector2 Vector2::normalized() const {
 
-	return length() == 0 ? Vector2(0.0f,0.0f) : (*this) * (1.0f / length());
+	return length() == 0 ?
+		Vector2(0.0f,0.0f) :
+		(*this) * (1.0f / length());
 
-	if (length() == 0) {
-		return Vector2(0, 0);
-	}
-	return (*this) * (1.0f / length());
 }
 
 Vector2 Vector2::operator+(const Vector2& other) const {
@@ -33,7 +31,14 @@ Vector2 Vector2::operator*(const float scalar) const {
 	return Vector2(x * scalar, y * scalar);
 }
 
-Vector2 Vector2::operator*(const Vector2& other) const {
-	// dot product. Might overload the operator or might not.
+float Vector2::dot(const Vector2& other) const {
+	return (this->x * other.x + this->y * other.y);
 }
+
+float Vector2::angleInRadians(const Vector2& other) const {
+	return std::acos(
+		this->dot(other) /
+		this->length() * other.length());
+}
+
 
